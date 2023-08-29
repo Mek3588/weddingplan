@@ -1,0 +1,21 @@
+.featured .box {
+  box-shadow: 0 0 20px 0 rgba(112, 121, 138, 0.18);
+  border-radius: 6px;
+  text-align: center;
+  padding: 30px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.featured .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(112, 121, 138, 0.25);
+}
+
+.featured img {
+  width: 65px;
+  height: 65px;
+  margin: auto;
+}
+
+

@@ -1,0 +1,46 @@
+.recent .text {
+  padding: 30px;
+}
+.recent .category span {
+  padding: 4px 15px;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-block;
+}
+.recent .category i {
+  font-size: 20px;
+  color: #bec7d8;
+}
+.recent p {
+  color: #72809d;
+}
+.recent .button {
+  border-top: 1px solid #e4e8f3;
+  padding: 10px 30px;
+}
+
+.recent .box {
+  transition: transform 0.3s ease-in-out;
+}
+
+.recent .box:hover {
+  transform: scale(1.055);
+}
+
+
+.recent .category span.real-wedding {
+  background-color: #25b5791a;
+  color: #25b579;
+}
+
+.recent .category span.elopement {
+  background-color: #ff98001a;
+  color: #ff9800;
+}
+
+
+.recent .category i {
+  font-size: 20px;
+  color: #bec7d8;
+}

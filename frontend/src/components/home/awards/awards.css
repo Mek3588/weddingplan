@@ -1,0 +1,46 @@
+.awards {
+  background-color: #f4f4f4; 
+  color: #333;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.awards .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.awards .heading p {
+  color: #95590a;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.awards .heading h1 {
+  color: #333;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.awards .icon {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin: auto;
+  margin-top: 30px;
+  background: rgba(144, 55, 126, 0.1);
+  border-radius: 50%; 
+  font-size: 32px;
+  color: #d6459e; 
+}
+
+.awards h1 {
+  font-size: 40px;
+}
+
+.awards p {
+  color: #777;
+  font-size: 16px;
+}
