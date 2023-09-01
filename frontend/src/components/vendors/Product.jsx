@@ -1,31 +1,114 @@
-import React from 'react'
+import React, { useRef } from "react";
+import { useSelector } from "react-redux";
+import CardFeature from "../product/CardFeature";
+import HomeCard from "../product/HomeCard";
+import { GrPrevious, GrNext } from "react-icons/gr";
+import FilterProduct from "../product/FilterProduct";
+import AllProduct from "../product/AllProduct";
 
-function Product() {
+const Home = () => {
+  const productData = useSelector((state) => state.product.productList);
+  const homeProductList = productData.slice(1, 5);
+  const weddingServices = productData.filter(
+    (el) => el.category === "wedding_service"
+  );
 
-    const vendors = [
-        { id: 1, name: 'Vendor 1', category: 'Electronics' },
-        { id: 2, name: 'Vendor 2', category: 'Clothing' },
-        { id: 3, name: 'Vendor 3', category: 'Food' },
-        
-      ];
-        return (
-          <div className="bg-gray-100 min-h-screen py-8">
-            <div className="container mx-auto px-4">
-              <h1 className="text-3xl font-bold mb-4">Vendors</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {vendors.map((vendor) => (
-                  <div
-                    key={vendor.id}
-                    className="bg-white p-4 shadow-md rounded-md"
-                  >
-                    <h2 className="text-xl font-semibold mb-2">{vendor.name}</h2>
-                    <p className="text-gray-600">{vendor.category}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+  const loadingArray = new Array(4).fill(null);
+  const loadingArrayFeature = new Array(10).fill(null);
+
+  const slideProductRef = useRef();
+  const nextProduct = () => {
+    slideProductRef.current.scrollLeft += 200;
+  };
+  const prevProduct = () => {
+    slideProductRef.current.scrollLeft -= 200;
+  };
+
+  return (
+    <div className="p-2 md:p-4">
+      <div className="md:flex gap-4 py-2">
+        <div className="md:w-1/2">
+          <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
+            <p className="text-sm font-medium text-slate-900">Wedding Planner</p>
+            <img
+              src="https://your-wedding-planner-icon-url.com"
+              className="h-7"
+            />
           </div>
-        );
-      
-                }
-export default Product
+          <h2 className="text-4xl md:text-7xl font-bold py-3">
+            Plan Your Dream Wedding with{" "}
+            <span className="text-red-600">Our Expert Team</span>
+          </h2>
+          <p className="py-3 text-base">
+            Make your special day truly unforgettable with our top-notch wedding planning services. Our experienced team will ensure your wedding is a day to remember.
+          </p>
+          <button className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md">
+            Get Planning
+          </button>
+        </div>
+
+        <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
+          {homeProductList[0]
+            ? homeProductList.map((el) => (
+                <HomeCard
+                  key={el._id}
+                  id={el._id}
+                  image={el.image}
+                  name={el.name}
+                  price={el.price}
+                  category={el.category}
+                />
+              ))
+            : loadingArray.map((_, index) => (
+                <HomeCard key={index + "loading"} loading={"Loading..."} />
+              ))}
+        </div>
+      </div>
+
+      <div className="">
+        <div className="flex w-full items-center">
+          <h2 className="font-bold text-2xl text-slate-800 mb-4">
+            Wedding Services
+          </h2>
+          <div className="ml-auto flex gap-4">
+            <button
+              onClick={prevProduct}
+              className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
+            >
+              <GrPrevious />
+            </button>
+            <button
+              onClick={nextProduct}
+              className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
+            >
+              <GrNext />
+            </button>
+          </div>
+        </div>
+        <div
+          className="flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all"
+          ref={slideProductRef}
+        >
+          {weddingServices[0]
+            ? weddingServices.map((el) => (
+                <CardFeature
+                  key={el._id + "wedding-service"}
+                  id={el._id}
+                  name={el.name}
+                  category={el.category}
+                  price={el.price}
+                  image={el.image}
+                />
+              ))
+            : loadingArrayFeature.map((_, index) => (
+                <CardFeature loading="Loading..." key={index + "cartLoading"} />
+              ))}
+        </div>
+      </div>
+
+      <AllProduct heading={"Explore More"} />
+    </div>
+  );
+};
+
+export default Home;

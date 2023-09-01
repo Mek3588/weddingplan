@@ -35,7 +35,7 @@ const FeaturedCard = () => {
     <div className="content grid5 mtop">
       {featured.map((item, index) => (
         <div className="box" key={index}>
-          <img src={gifs[index]} alt={item.name} /> {/* Use the respective GIF */}
+          <img src={gifs[index]} alt={item.name} />
           <h4>{item.name}</h4>
           <label>{item.total}</label>
         </div>

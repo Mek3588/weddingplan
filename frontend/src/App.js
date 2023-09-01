@@ -1,6 +1,6 @@
 import "./App.css";
 import Pages from "./components/pages/Pages";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setDataProduct } from "./components/redux/productSlide";
 
@@ -18,7 +18,7 @@ function App() {
         console.error("Error fetching data:", error);
       }
     })();
-  }, [dispatch]); // Added `dispatch` as a dependency
+  }, [dispatch]); 
 
   return <Pages />;
 }
