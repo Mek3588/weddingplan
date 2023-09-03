@@ -19,8 +19,7 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
     );
   };
 
-  const formattedPrice = typeof price === "number" ? price.toFixed(2) : "";
-
+  
   return (
     <div
       className={`w-full max-w-[280px] bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 ease-in-out transform ${
@@ -48,7 +47,7 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
               </h3>
               <p className="text-gray-600 text-center capitalize">{category}</p>
               <p className="text-xl font-bold text-red-500 mt-2 text-center">
-                {formattedPrice && `₹${formattedPrice}`}
+                birr {price}
               </p>
             </div>
           </Link>
@@ -58,7 +57,7 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
             } transition-transform duration-300 ease-in-out`}
             onClick={handleAddCartProduct}
           >
-            Add to Cart
+            Add to planner
           </button>
         </>
       ) : (

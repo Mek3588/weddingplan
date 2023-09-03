@@ -48,7 +48,7 @@ const Header = () => {
       path: "/contact",
     },
     {
-      text: "Budget Tracker",
+      text: "Budget Track",
       path: "/budgetrack", 
     },
     {
@@ -59,6 +59,11 @@ const Header = () => {
       text: "Vendors",
       path: "/Product", 
     },
+    {
+      text: "planner",
+      path: "/Planner",
+    },
+
   ];
 
   return (

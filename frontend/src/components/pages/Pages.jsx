@@ -14,6 +14,7 @@ import Budgetracking from "../budgetrack/Budgetracking";
 import Payments from "../payment/Payments";
 import Newproduct from "../addproduct/Newproduct";
 import Product from "../vendors/Product";
+import Planner from "../planner/Planner";
 
 const Pages = () => {
   return (
@@ -32,6 +33,7 @@ const Pages = () => {
         <Route path="/payments" element={<Payments />} />
         <Route path="/newproduct" element={<Newproduct />} />
         <Route path="/Product" element={<Product />} />
+        <Route path="/planner" element={<Planner />} />
 
 
       </Routes>

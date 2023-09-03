@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import { motion } from 'framer-motion';
 import Pays from './Pays';
+import { useLocation } from 'react-router-dom';
 
 function Payments() {
+  const location = useLocation();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [amount, setAmount] = useState('');
-
+  const [amount, setAmount] = useState(0);
+  
+  
+  useEffect(() => {
+    
+    const queryParams = new URLSearchParams(location.search);
+    const amountParam = queryParams.get('amount');
+    
+    if (amountParam !== null) {
+      const parsedAmount = parseFloat(amountParam);
+      if (!isNaN(parsedAmount) && parsedAmount >= 0) {
+        setAmount(parsedAmount);
+      }
+    }
+  }, [location.search]);
     
   const isAmountInvalid = amount < 0;
 
@@ -15,7 +30,7 @@ function Payments() {
   const public_key ="CHAPUBK_TEST-HGcky5M8HaaUBwgeyyhXwfzPZC2zKRBH"
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-indigo-500"> {/* Changed background color */}
+    <div className="min-h-screen flex items-center justify-center bg-indigo-500"> 
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -71,6 +86,7 @@ function Payments() {
               isAmountInvalid ? 'ring-red-500' : 'ring-indigo-200'
             }`}
             value={amount}
+            readOnly 
               onChange={(e) => setAmount(e.target.value)}
               />
 

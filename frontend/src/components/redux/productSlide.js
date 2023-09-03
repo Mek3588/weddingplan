@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
+
+function convertToNumber(value) {
+  return parseFloat(value.replace(/,/g, ""));
+}
+
 const initialState = {
   productList: [],
   cartItem: [],
@@ -19,41 +24,40 @@ export const productSlice = createSlice({
         toast("Already Item in Cart");
       } else {
         toast("Item Add successfully");
-        const total = action.payload.price;
+        const price = convertToNumber(action.payload.price); 
         state.cartItem = [
           ...state.cartItem,
-          { ...action.payload, qty: 1, total: total },
+          { ...action.payload, qty: 1, total: price }, 
         ];
       }
     },
     deleteCartItem: (state, action) => {
-      toast("one Item Delete");
+      toast("One Item Delete");
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       state.cartItem.splice(index, 1);
-      console.log(index);
     },
     increaseQty: (state, action) => {
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       let qty = state.cartItem[index].qty;
       const qtyInc = ++qty;
-      state.cartItem[index].qty = qtyInc;
 
-      const price = state.cartItem[index].price;
+      const price = convertToNumber(state.cartItem[index].price); 
       const total = price * qtyInc;
 
-      state.cartItem[index].total = total;
+      state.cartItem[index].qty = qtyInc;
+      state.cartItem[index].total = total; 
     },
     decreaseQty: (state, action) => {
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       let qty = state.cartItem[index].qty;
       if (qty > 1) {
-        const qtyDec = ++qty;
-        state.cartItem[index].qty = qtyDec;
+        const qtyDec = --qty;
 
-        const price = state.cartItem[index].price;
+        const price = convertToNumber(state.cartItem[index].price); 
         const total = price * qtyDec;
 
-        state.cartItem[index].total = total;
+        state.cartItem[index].qty = qtyDec;
+        state.cartItem[index].total = total; 
       }
     },
   },

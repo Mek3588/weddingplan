@@ -1,70 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import 'chart.js/auto';
+import 'chartjs-plugin-datalabels';
+import CategoryList from './CatagoryList';
 
-const Budgetracking = () => {
+const BudgetTracker = () => {
+  const initialBudget = 1500;
+  const [budget, setBudget] = useState(initialBudget);
+
+  const budgetData = {
+    labels: ['Food', 'Rent', 'Entertainment', 'Other'],
+    datasets: [
+      {
+        data: [300, 800, 200, 500],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        offset: 10,
+        color: 'black',
+        font: {
+          weight: 'bold',
+        },
+        formatter: (value, context) => {
+          const label = budgetData.labels[context.dataIndex];
+          const amount = budgetData.datasets[0].data[context.dataIndex];
+          return `${label}: $${amount}`;
+        },
+      },
+    },
+  };
+
+  const totalExpenses = budgetData.datasets[0].data.reduce((acc, value) => acc + value, 0);
+  const remainingBudget = budget - totalExpenses;
+
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Budget Tracking</h1>
-
-        {/* Budget Item Form */}
-        <div className="bg-white p-4 rounded shadow mb-4">
-          <h2 className="text-lg font-semibold mb-2">Add New Budget Item</h2>
-          <div className="mb-2">
-            <input
-              type="text"
-              placeholder="Item Name"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
+    <div className="container mx-auto py-8">
+      <div className="lg:flex">
+        <div className="lg:w-1/2 p-4">
+          <div className="mb-4">
+            <h1 className="text-3xl font-semibold mb-2">Budget Tracker</h1>
+            <p className="text-lg font-semibold">Budget Limit: ${budget}</p>
+            <p className="text-lg font-semibold">Remaining Budget: ${remainingBudget}</p>
           </div>
-          <div className="mb-2">
-            <input
-              type="text"
-              placeholder="Category"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-2">
-            <input
-              type="number"
-              placeholder="Estimated Cost"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Add Item
-          </button>
+          <Doughnut data={budgetData} options={options} />
         </div>
-
-        {/* Total Budget Calculation */}
-        <div className="bg-white p-4 rounded shadow mb-4">
-          <h2 className="text-lg font-semibold mb-2">Total Budget</h2>
-          <div className="flex items-center">
-            <p className="mr-2">Estimated Total:</p>
-            <span className="text-green-600 font-semibold">$10,000</span>
-          </div>
-          <div className="flex items-center">
-            <p className="mr-2">Actual Spending:</p>
-            <span className="text-red-600 font-semibold">$8,500</span>
-          </div>
-          <div className="flex items-center">
-            <p className="mr-2">Remaining Budget:</p>
-            <span className="text-blue-600 font-semibold">$1,500</span>
-          </div>
-        </div>
-
-        {/* Budget Categories */}
-        <div className="bg-white p-4 rounded shadow mb-4">
-          <h2 className="text-lg font-semibold mb-2">Budget Categories</h2>
-          <ul>
-            <li className="mb-2">Venue</li>
-            <li className="mb-2">Catering</li>
-            <li className="mb-2">Decorations</li>
-            {/* Add more categories */}
-          </ul>
+        <div className="lg:w-1/2">
+          <CategoryList budgetData={budgetData} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Budgetracking
+export default BudgetTracker;
