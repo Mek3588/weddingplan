@@ -9,11 +9,11 @@ const BudgetTracker = () => {
   const [budget, setBudget] = useState(initialBudget);
 
   const budgetData = {
-    labels: ['Food', 'Rent', 'Entertainment', 'Other'],
+    labels: ['Decor', 'Catering', 'Hotel', 'Photography','Cars'],
     datasets: [
       {
-        data: [300, 800, 200, 500],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
+        data: [300, 800, 200, 500, 700],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50','pink'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
       },
     ],
@@ -47,12 +47,12 @@ const BudgetTracker = () => {
         <div className="lg:w-1/2 p-4">
           <div className="mb-4">
             <h1 className="text-3xl font-semibold mb-2">Budget Tracker</h1>
-            <p className="text-lg font-semibold">Budget Limit: ${budget}</p>
-            <p className="text-lg font-semibold">Remaining Budget: ${remainingBudget}</p>
+            <p className="text-lg font-semibold">Budget Limit: birr{budget}</p>
+            <p className="text-lg font-semibold">Remaining Budget: birr{remainingBudget}</p>
           </div>
           <Doughnut data={budgetData} options={options} />
         </div>
-        <div className="lg:w-1/2 flex justify-center items-center"> {/* Updated the container */}
+        <div className="lg:w-1/2 flex justify-center items-center"> 
           <CategoryList budgetData={budgetData} />
         </div>
       </div>
