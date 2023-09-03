@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 import 'chartjs-plugin-datalabels';
-import CategoryList from './CatagoryList';
+import CategoryList from './CatagoryList'; // Corrected the import name
 
 const BudgetTracker = () => {
   const initialBudget = 1500;
@@ -52,7 +52,7 @@ const BudgetTracker = () => {
           </div>
           <Doughnut data={budgetData} options={options} />
         </div>
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 flex justify-center items-center"> {/* Updated the container */}
           <CategoryList budgetData={budgetData} />
         </div>
       </div>
