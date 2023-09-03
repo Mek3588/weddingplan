@@ -2,15 +2,13 @@ import "./App.css";
 import Pages from "./components/pages/Pages";
 import { useDispatch, useEffect } from "react";
 import { setDataProduct } from "./components/redux/productSlide";
-
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     async function fetchData() {
       try {
         // Fetch data from your backend API
-        const response = await fetch('https://backend-8afy.onrender.com/Product', {
+        const response = await fetch('https://backend-8afy.onrender.com', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
