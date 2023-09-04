@@ -21,7 +21,7 @@ export const productSlice = createSlice({
     addCartItem: (state, action) => {
       const check = state.cartItem.some((el) => el._id === action.payload._id);
       if (check) {
-        toast("Already Item in Cart");
+        toast("Already Item in planner");
       } else {
         toast("Item Add successfully");
         const price = convertToNumber(action.payload.price); 

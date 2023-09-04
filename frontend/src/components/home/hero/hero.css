@@ -1,3 +1,4 @@
+/* Default styles for larger screens */
 .hero .container {
   padding-top: 10%;
 }
@@ -10,11 +11,11 @@
 }
 
 .hero p {
-  color: #fe027c; 
+  color: #fe027c;
   opacity: 0.9;
   font-size: 18px;
   line-height: 1.4;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 form {
@@ -63,6 +64,7 @@ form h4 {
   margin-top: 20px;
 }
 
+/* Responsive styles for screens with a maximum width of 800px */
 @media screen and (max-width: 800px) {
   .hero .container {
     padding-top: 20%;
@@ -70,5 +72,18 @@ form h4 {
 
   form {
     margin-top: 30px;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  form input {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  form span {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  input::placeholder {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
