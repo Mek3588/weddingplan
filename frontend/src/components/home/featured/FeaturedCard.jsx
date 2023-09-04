@@ -32,12 +32,12 @@ const FeaturedCard = () => {
   ];
 
   return (
-    <div className="content grid5 mtop">
+    <div className="md:flex md:justify-between md:space-x-4 mtop">
       {featured.map((item, index) => (
-        <div className="box" key={index}>
-          <img src={gifs[index]} alt={item.name} />
-          <h4>{item.name}</h4>
-          <label>{item.total}</label>
+        <div className="bg-white md:w-1/5 p-4 rounded-lg shadow-md" key={index}>
+          <img src={gifs[index]} alt={item.name} className="mx-auto mb-4" />
+          <h4 className="text-center">{item.name}</h4>
+          <label className="text-center">{item.total}</label>
         </div>
       ))}
     </div>

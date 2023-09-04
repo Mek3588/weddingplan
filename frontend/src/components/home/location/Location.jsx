@@ -49,23 +49,22 @@ const Location = () => {
   ];
 
   return (
-    <section className='location padding'>
-      <div className='container'>
+    <section className="location py-10">
+      <div className="container">
         <Heading
-          title='Discover Wedding Destinations'
-          subtitle='Find the ideal wedding destinations to create your perfect day. Explore our diverse range of locations for your dream wedding.'
+          title="Discover Wedding Destinations"
+          subtitle="Find the ideal wedding destinations to create your perfect day. Explore our diverse range of locations for your dream wedding."
+          className="text-center text-lg" // Adjust text size for larger screens
         />
 
-        <div className='content grid3 mtop'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mtop">
           {location.map((item, index) => (
-            <div className='box' key={index}>
-              <img src={item.cover} alt='' />
-              <div className='overlay'>
-                <h5>{item.name}</h5>
-                <p>
-                  <label>{item.Villas}</label>
+            <div className="box relative" key={index}>
+              <img src={item.cover} alt={item.name} className="w-full h-auto" />
+              <div className="overlay absolute inset-0 flex flex-col justify-center items-center bg-opacity-80 bg-gray-800 text-white transition-opacity opacity-0 hover:opacity-100">
+                <h5 className="text-xl mb-2">{item.name}</h5>
+                <p className="text-sm">
                   <label>{item.Offices}</label>
-                  <label>{item.Apartments}</label>
                 </p>
               </div>
             </div>
