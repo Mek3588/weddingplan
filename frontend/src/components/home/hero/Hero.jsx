@@ -37,9 +37,6 @@ const Hero = () => {
           <div className="box">
             <h4>Customize Every Detail</h4>
           </div>
-          <button className="btn1">
-            <i className="fa fa-search"></i> Plan Your Wedding
-          </button>
         </form>
       </div>
     </section>
