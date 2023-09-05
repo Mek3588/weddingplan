@@ -19,12 +19,11 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
     );
   };
 
-  
   return (
     <div
       className={`w-full max-w-[280px] bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 ease-in-out transform ${
         hovered ? "scale-105" : ""
-      }`}
+      } sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
