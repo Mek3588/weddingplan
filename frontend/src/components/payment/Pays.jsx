@@ -15,7 +15,7 @@ function Pays({firstName,lastName,email,amount,tx_ref,public_key}) {
     <input type="hidden" name="title" value="Let us do this" />
     <input type="hidden" name="description" value="Paying with Confidence with cha" />
     <input type="hidden" name="logo" value="https://chapa.link/asset/images/chapa_swirl.svg" />
-    <input type="hidden" name="callback_url" value="https://example.com/callbackurl" />
+    <input type="hidden" name="callback_url" value="https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60" />
     <input type="hidden" name="return_url" value="http://localhost:3000/" />
     <input type="hidden" name="meta[title]" value="test" />
     <button

@@ -78,4 +78,8 @@ header .toggle {
     margin-bottom: 20px;
     color: #fff;
   }
+  .login-logout-btn {  /* Change the class name */
+    display: block;
+  }
+  
 }
