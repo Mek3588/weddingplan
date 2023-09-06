@@ -17,8 +17,18 @@ mongoose
   .then(() => console.log("Connect to Databse"))
   .catch((err) => console.log(err));
 
+//adminschema
+const adminSchema = mongoose.Schema({
+  firstName: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: String,
+}); 
 
-//schema
+
+//userschema
 const userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -35,6 +45,39 @@ const userSchema = mongoose.Schema({
 
   //MODEL for user
 const userModel = mongoose.model("user", userSchema);
+
+//deleteusers
+app.delete("/users/:email", async (req, res) => {
+  const email = req.params.email;
+  try {
+    const deletedUser = await userModel.findOneAndDelete({ email });
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+  //MODEL for admin
+const adminModel = mongoose.model("admin", adminSchema);
+
+
+ //featch users
+ app.get("/users", async (req, res) => {
+  try {
+    const data = await userModel.find({});
+  res.send(JSON.stringify(data));
+  } catch (error) {
+    console.error(error); // Log the error
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
 
 //api
 app.get("/", (req, res) => {
@@ -86,11 +129,50 @@ app.post("/uploadProduct",async(req,res)=>{
   res.send({message : "Upload successfully"})
 })
 
-//
+//fetchdata
 app.get("/Product",async(req,res)=>{
 const data = await productModel.find({})
 res.send(JSON.stringify(data))
 })
+
+const vendorSchema = mongoose.Schema({
+  name: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: String,
+  // Add other fields for vendor information
+});
+
+const Vendor = mongoose.model("Vendor", vendorSchema);
+
+// Create a new route to handle vendor creation
+app.post("/vendors", async (req, res) => {
+  try {
+    // Extract vendor data from request body
+    const { name, email, password } = req.body;
+
+    // Check if the email already exists in the database (duplicate email check)
+
+    // Create a new vendor instance
+    const vendor = new Vendor({
+      name,
+      email,
+      password,
+      // Add other vendor-related fields here
+    });
+
+    // Save the vendor to the database
+    await vendor.save();
+
+    res.json({ message: "Vendor account created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 
 
 
@@ -108,6 +190,7 @@ app.post("/login", async (req, res) => {
         lastName: result.lastName,
         email: result.email,
         image1: result.image1,
+        image2: result.image2,
       };
 
       console.log(dataSend);
