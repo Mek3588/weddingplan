@@ -67,7 +67,7 @@ const adminModel = mongoose.model("admin", adminSchema);
 
 
  //featch users
- app.get("/users", async (req, res) => {
+ app.get("/Users", async (req, res) => {
   try {
     const data = await userModel.find({});
   res.send(JSON.stringify(data));
