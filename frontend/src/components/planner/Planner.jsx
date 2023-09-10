@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import CartProduct from "../product/cartProduct";
 import emptyCartImage from "../product/empty.gif"
 import { toast } from "react-hot-toast";
-//import {loadStripe} from '@stripe/stripe-js';
 import { useNavigate } from "react-router-dom";
 
 const Planner = () => {

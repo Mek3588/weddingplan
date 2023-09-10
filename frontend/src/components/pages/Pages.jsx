@@ -15,6 +15,7 @@ import Payments from "../payment/Payments";
 import Newproduct from "../addproduct/Newproduct";
 import Product from "../vendors/Product";
 import Planner from "../planner/Planner";
+import Otpvar from "../signup/Otpvar";
 
 const Pages = () => {
   return (
@@ -33,7 +34,8 @@ const Pages = () => {
         <Route path="/payments" element={<Payments />} />
         <Route path="/newproduct" element={<Newproduct />} />
         <Route path="/Product" element={<Product />} />
-        <Route path="/planner" element={<Planner />} />
+        <Route path="/planner" element={<Planner />}/>
+        <Route path="/Otpvar" element={<Otpvar />}/>
 
 
       </Routes>

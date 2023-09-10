@@ -32,6 +32,7 @@ function Signup() {
     image1: "",
     image2:""
   });
+  
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -92,7 +93,7 @@ const handleSubmits = async(e) => {
 
       //toast(dataRes.message)
       if(dataRes.alert){
-        navigate("/login");
+        navigate("/Otpvar");
       }
      
     } else {
@@ -221,7 +222,7 @@ const handleSubmits = async(e) => {
             </div>
           </div>
           <button className="w-full max-w-[200px] mx-auto bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 cursor-pointer text-white text-xl font-semibold text-center py-2 rounded-full mt-4 transition-all transform hover:scale-105" type="submit">
-      Sign Up
+      varification
     </button>
     </form>
     <p className="text-center text-sm mt-4">
