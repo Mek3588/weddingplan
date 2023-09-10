@@ -1,51 +1,52 @@
 import React from "react";
-import "./hero.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 // Import your images
 import image1 from "../hero/rotateimg/wedding1.jpg";
 import image2 from "../hero/rotateimg/wedding3.jpg";
 import image3 from "../hero/rotateimg/weding2.jpg";
 
+const imageStyle = {
+  maxWidth: "100%", // Set the maximum width to 100% to fit within the container
+  maxHeight: "550px", // Set the maximum height as desired
+};
+
 const Hero = () => {
   return (
-    <section className="hero relative overflow-hidden">
-      <div className="slider absolute top-0 left-0 w-full h-full flex space-x-4 transition-transform duration-1000 ease-in-out">
-        <div className="slide w-full h-full bg-cover bg-center rotate-image" style={{ backgroundImage: `url(${image1})` }}></div>
-        <div className="slide w-full h-full bg-cover bg-center rotate-image" style={{ backgroundImage: `url(${image2})` }}></div>
-        <div className="slide w-full h-full bg-cover bg-center rotate-image" style={{ backgroundImage: `url(${image3})` }}></div>
-      </div>
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Heading */}
-        <h1 className="text-4xl font-bold text-white mb-4">
-          Your Dream Wedding Awaits
-        </h1>
-        <p className="text-lg text-pink-500 opacity-90 font-semibold leading-6 mb-8">
-          Create your perfect day with our expert wedding planning services.
-        </p>
+    <section className="hero">
+      <Carousel
+        showArrows={true}
+        showStatus={false}
+        infiniteLoop={true}
+        showThumbs={false}
+        autoPlay={true}
+        interval={2000}
+      >
+        <div>
+          <img
+            src={image1}
+            alt="Image 1"
+            style={imageStyle}
+          />
+        </div>
+        <div>
+          <img
+            src={image2}
+            alt="Image 2"
+            style={imageStyle}
+          />
+        </div>
+        <div>
+          <img
+            src={image3}
+            alt="Image 3"
+            style={imageStyle}
+          />
+        </div>
+      </Carousel>
 
-        {/* Search Form */}
-        <form className="flex space-x-4 bg-gray-200 rounded-lg shadow-md p-4 mt-8">
-          <div className="flex-1">
-            <label className="block text-gray-800">Location</label>
-            <input
-              type="text"
-              placeholder="Wedding Venue"
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block text-gray-800">Budget</label>
-            <input
-              type="text"
-              placeholder="Budget Range"
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          <div className="flex-1">
-            <h4 className="font-semibold text-gray-800 mt-2">Customize Every Detail</h4>
-          </div>
-        </form>
-      </div>
+      {/* Rest of your content */}
     </section>
   );
 };
